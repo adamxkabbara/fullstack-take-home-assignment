@@ -1,0 +1,28 @@
+@media (min-width: 651px) {
+    .hoverable-cell-action {
+        top: 0%;
+        right: 100%;
+        margin-top: 0%;
+    }
+}
+
+@media (max-width: 650px) {
+    th {
+        display: none;
+    }
+
+    td {
+        display: block;
+    }
+
+    td::before {
+        content: attr(data-cell) ": ";
+        font-weight: bold;
+    }
+
+    .hoverable-cell-action {
+        top: 0%;
+        left: 100%;
+        margin-top: 0%;
+    }
+}

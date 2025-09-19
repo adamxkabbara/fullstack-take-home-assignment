@@ -15,9 +15,11 @@ import type { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-
  */
 type Documents = {
     "\n  query GetUsers($filters: UserFilters!) {\n    users(filters: $filters) {\n      id\n      name\n      age\n      email\n      phone\n    }\n  }\n": typeof types.GetUsersDocument,
+    "\n    query GetUsersAndPosts($filters: UserFilters!) {\n        users(filters: $filters) {\n            id\n            name\n            email\n            phone\n            age\n            posts {\n                title\n                body\n            }\n        }\n    }\n": typeof types.GetUsersAndPostsDocument,
 };
 const documents: Documents = {
     "\n  query GetUsers($filters: UserFilters!) {\n    users(filters: $filters) {\n      id\n      name\n      age\n      email\n      phone\n    }\n  }\n": types.GetUsersDocument,
+    "\n    query GetUsersAndPosts($filters: UserFilters!) {\n        users(filters: $filters) {\n            id\n            name\n            email\n            phone\n            age\n            posts {\n                title\n                body\n            }\n        }\n    }\n": types.GetUsersAndPostsDocument,
 };
 
 /**
@@ -38,6 +40,10 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "\n  query GetUsers($filters: UserFilters!) {\n    users(filters: $filters) {\n      id\n      name\n      age\n      email\n      phone\n    }\n  }\n"): (typeof documents)["\n  query GetUsers($filters: UserFilters!) {\n    users(filters: $filters) {\n      id\n      name\n      age\n      email\n      phone\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n    query GetUsersAndPosts($filters: UserFilters!) {\n        users(filters: $filters) {\n            id\n            name\n            email\n            phone\n            age\n            posts {\n                title\n                body\n            }\n        }\n    }\n"): (typeof documents)["\n    query GetUsersAndPosts($filters: UserFilters!) {\n        users(filters: $filters) {\n            id\n            name\n            email\n            phone\n            age\n            posts {\n                title\n                body\n            }\n        }\n    }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};
